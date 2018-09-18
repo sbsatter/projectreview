@@ -6,9 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sbsatter on 9/18/18.
@@ -48,5 +51,27 @@ public class UserRepository {
 			log.error(dae.getLocalizedMessage());
 		}
 		return null;
+	}
+	
+	public User add(User user) {
+		SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+				.withTableName("user")
+				.usingGeneratedKeyColumns("id");
+		
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		
+		parameters.put("name", user.getName());
+		parameters.put("phone", user.getPhone());
+		parameters.put("password", user.getPassword());
+		parameters.put("role", user.getRole());
+		parameters.put("username", user.getUsername());
+		
+		Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
+		if (id == null) {
+			log.error("Failed to insert {}", user);
+			return null;
+		}
+		user.setId(id.intValue());
+		return user;
 	}
 }

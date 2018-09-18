@@ -5,6 +5,8 @@
     <title>All Users</title>
 </head>
 <body>
+<span th:if="${user != null}" th:text="Successfully addded user: ${user.name}">
+</span>
 <table>
     <thead>
     <tr>

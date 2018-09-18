@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class UserController {
 	
 	@GetMapping("/find")
 	public String findUserPageDisplay() {
-		return "search/search";
+		return "user/user";
 	}
 	
 	
@@ -36,7 +37,25 @@ public class UserController {
 			users.add(user);
 			model.addAttribute("users", users);
 		}
-		return "search/all";
+		return "user/all";
+	}
+	
+	
+	@GetMapping("/add")
+	public String addUserPage(Model model) {
+		List<String> roles = new ArrayList<>();
+		roles.add("USER");
+		roles.add("ADMIN");
+		model.addAttribute("roles", roles);
+		return "user/add";
+	}
+	
+	
+	@PostMapping("/add")
+	public String addUser(@ModelAttribute("user") User user, Model model, final RedirectAttributes redirectAttributes) {
+		user = userService.addUser(user);
+		redirectAttributes.addFlashAttribute("user", user);
+		return "redirect:/user/list";
 	}
 	
 	@GetMapping("/list")
@@ -44,6 +63,6 @@ public class UserController {
 		List<User> list;
 		list = userService.getAllUsers();
 		model.addAttribute("users", list);
-		return "search/all";
+		return "user/all";
 	}
 }
