@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>All Users</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Serial</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user,iterationStatus : ${users}">
+        <td th:text="${iterationStatus.count}">1</td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.phone}"></td>
+        <td th:text="${user.role}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

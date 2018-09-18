@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/user/find}" th:method="POST" modelAttribute="username">
+    <label>Search By Username</label>
+    <input type="text" name="username" placeholder="Search"/>
+    <input type="submit" text="SUBMIT"/>
+</form>
+</body>
+</html>
