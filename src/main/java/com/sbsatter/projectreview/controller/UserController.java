@@ -41,21 +41,30 @@ public class UserController {
 	}
 	
 	
-	@GetMapping("/add")
-	public String addUserPage(Model model) {
+	@GetMapping("/register")
+	public String showRegistrationPage(Model model, final RedirectAttributes redirectAttributes) {
 		List<String> roles = new ArrayList<>();
 		roles.add("USER");
 		roles.add("ADMIN");
 		model.addAttribute("roles", roles);
+		model.addAttribute("user", new User());
 		return "user/add";
 	}
 	
 	
-	@PostMapping("/add")
+	@PostMapping("/register")
 	public String addUser(@ModelAttribute("user") User user, Model model, final RedirectAttributes redirectAttributes) {
+		if (user.getRole() == null) {
+			user.setRole("USER");
+		}
 		user = userService.addUser(user);
-		redirectAttributes.addFlashAttribute("user", user);
-		return "redirect:/user/list";
+		if (user != null) {
+			redirectAttributes.addFlashAttribute("success", "Please log in");
+			return "redirect:/";
+		} else {
+			// todo raihan khali input gula te data boshay upore error message show koraite hobe
+			return "redirect:/user/register";
+		}
 	}
 	
 	@GetMapping("/list")

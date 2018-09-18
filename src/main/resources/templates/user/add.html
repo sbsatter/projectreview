@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
     <title>Title</title>
 </head>
 <body>
-<!-- todo raihan fix this form to add users. Check user controller methods: addUserPage() and addUser()-->
-<form th:action="@{/user/add}" th:method="POST" modelAttribute="user">
+
+<form th:action="@{/user/register}" th:method="POST" th:object="${user}" >
     <label for="username">Username</label>
-    <input type="text" id="username" placeholder="username"/> <br></br>
+    <input type="text" id="username" placeholder="username" th:field="*{username}"/> <br></br>
     <label for="password">Password</label>
-    <input type="password" id="password" placeholder="password"/> <br></br>
-    <label for="phone">phone</label>
-    <input type="text" id="phone" placeholder="phone"/> <br></br>
-    <label for="role">Roles</label>
-    <select id="role">
-        <option th:each="${roles}"></option>
-    </select><br></br>
+    <input type="password" id="password" placeholder="password" th:field="*{password}"/> <br></br>
+    <label for="phone">Phone</label>
+    <input type="text" id="phone" placeholder="phone" th:field="*{phone}"/> <br></br>
+
+    <div sec:authorize-expr="hasAuthority('ADMIN')">
+        <label for="role">Roles</label>
+        <select name="role" th:field="*{role}">
+            <option th:each="role, iteration: ${roles}" th:value="${role}" th:text="${role}"></option>
+        </select>
+    </div>
     <label for="name">Name</label>
-    <input type="text" id="name" placeholder="name"/> <br></br>
+    <input type="text" id="name" placeholder="name" th:field="*{name}"/> <br></br>
     <input type="submit" value="Submit"/>
 </form>
 </body>

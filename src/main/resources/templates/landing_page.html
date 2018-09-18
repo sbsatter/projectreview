@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Landing Page</title>
 </head>
 <body>
-This is just a simple landing page
+This is just a simple landing page.<br>
+<div th:text="${success}"></div>
+
+<a th:href="@{/user/register}">
+    <span th:if="${not #authorization.expression('isAuthenticated()')}">Not Registered? Sign Up Now</span>
+    <span sec:authorize-expr="hasAuthority('ADMIN')">Add Users</span>
+</a></br>
+
+<div th:if="${not #authorization.expression('isAuthenticated()')}">
+    Existing user? <a th:href="@{/login}">Log in now</a>
+</div>
 </body>
 </html>
