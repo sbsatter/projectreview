@@ -25,7 +25,7 @@ public class UserController {
 	
 	@GetMapping("/find")
 	public String findUserPageDisplay() {
-		return "user/user";
+		return "user/search";
 	}
 	
 	
