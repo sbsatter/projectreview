@@ -24,7 +24,7 @@ public class UserRepository {
 	
 	public User findByUsername(String username) {
 		User user;
-		String query = "Select * from user where username = ?";
+		String query = "Select * from user where username like ? order by id desc limit 1";
 		
 		try {
 			user = jdbcTemplate.queryForObject(query, new Object[] {username}, new UserRowMapper());

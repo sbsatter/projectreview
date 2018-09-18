@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search for a movie</title>
+</head>
+<body>
+<form th:action="@{/movie/search}" th:method="POST" modelAttribute="title">
+    <label>Search By Title</label>
+    <input type="text" name="title" placeholder="Search"/>
+    <input type="submit" value="SEARCH"/>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Serial</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie,iterationStatus : ${movies}">
+        <td th:text="${iterationStatus.count}">1</td>
+        <td><a th:href="@{'/movie/rate/' + ${movie.imdbID}}" th:text="${movie.Title}"></a></td>
+        <td th:text="${movie.Year}"></td>
+        <td th:text="${movie.imdbRating}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

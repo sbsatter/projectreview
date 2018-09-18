@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search for a movie</title>
+</head>
+<body>
+<form th:action="@{/movie/search}" th:method="POST" modelAttribute="title">
+    <label>Search By Title</label>
+    <input type="text" name="title" placeholder="Search"/>
+    <input type="submit" value="SEARCH"/>
+</form>
+<form th:action="@{/movie/rate}" th:method="POST" th:object="${movie}">
+
+<table>
+    <thead>
+    <tr>
+        <th>Serial</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Rating</th>
+        <th>Your rating</th>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><img th:src="${movie.Poster}" th:height="150px" th:width="150px"/></td>
+        <td>
+            <span th:text="${movie.Title}">Title</span>
+            <input th:hidden="hidden" type="text" th:field="*{imdbID}" th:value="${movie.imdbID}"/>
+        </td>
+        <td th:text="${movie.Year}"></td>
+        <td th:text="${movie.imdbRating}"></td>
+        <td>
+            <select th:field="*{userRating}">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </td>
+        <td><input type="submit" value="Save"/></td>
+    </tr>
+    </tbody>
+</table>
+</form>
+</body>
+</html>

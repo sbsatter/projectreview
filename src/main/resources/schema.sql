@@ -14,7 +14,7 @@ create table ratings
 (
    id integer not null auto_increment,
    user_id integer not null,
-   repo_id integer not null,
-   rating integer not null,
+   imdb_id varchar(255) not null,
+   rating VARCHAR(255) not null,
    primary key(id)
 );
