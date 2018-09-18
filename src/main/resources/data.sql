@@ -1,0 +1,2 @@
+insert into user values (1, 'admin', 'Admin User', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '01771122334', 'ADMIN');
+insert into user values (2, 'user', 'User', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '01662233212', 'USER');
