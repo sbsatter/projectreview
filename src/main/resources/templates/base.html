@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta name="description" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Project Review</title>
+    <link rel="stylesheet" th:href="@{/css/form/forms.css}"/>
+    <link rel="stylesheet" th:href="@{/css/navbar/nav.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+    <form id="logoutForm" hidden="hidden" method="post" th:action="@{/logout}">
+
+    </form>
+    <nav>
+        <ul th:if="${#authorization.expression('isAuthenticated()')}">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/user/list">Users</a></li>
+            <li><a href="/movie/search">Search Movies</a></li>
+            <li><a id="logout" href="#">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <div layout:fragment="page_content"></div>
+        <div layout:fragment="page_content_2"></div>
+    </div>
+
+    <div class="container">
+        <footer>
+            © 2018 sbsatter
+            <span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="name"></span> |
+                Roles: <span sec:authentication="principal.authorities"></span> |
+                <a href="javascript: document.footerLogout.submit()" role="menuitem">Sign Out</a>
+                <form name="footerLogout" th:action="@{/logout}" method="POST" th:hidden="true">
+                     <input th:hidden="true" type="submit" value="Logout"/>
+                </form>
+            </span>
+        </footer>
+    </div>
+    <!--<script type="text/javascript" th:src="@{/js/commons/logout.js}"/> -->
+    <script>
+        window.onload = function() {
+            var logoutBtn = document.getElementById('logout');
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                var form = document.getElementById('logoutForm');
+                console.log('Logging out');
+                form.submit();
+            }, false);
+        };
+    </script>
+</body>
+</html>
