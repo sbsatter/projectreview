@@ -1,4 +1,15 @@
 nav ul li {
     list-style: none;
     display: inline;
+    padding-left: 2em;
+}
+
+nav a {
+    padding: 1em;
+    background-color: aliceblue;
+}
+
+nav a:visited {
+    padding: 1em;
+    color: #5555ff;
 }
