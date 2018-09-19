@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Dashboard</title>
-</head>
-<body>
+<!DOCTYPE HTML>
+<HTML xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorate="~{base}">
+<div layout:fragment="page_content" id="search_content">
 Welcome <span sec:authentication="name">USER</span>, Dashboard.
 <ul>
-    <li><a href="user/find">Fund User</a></li>
+    <li><a href="user/find">Find User</a></li>
     <li><a href="user/list">list</a></li>
     <li><a href="user/register">Register</a></li>
 </ul>
-</body>
-</html>
+</div>
+</HTML>

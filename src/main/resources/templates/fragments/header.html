@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:fragment="header-css">
+
+        <meta th:name="_csrf" th:content="${_csrf.token}"/>
+        <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    </div>
+</head>
+<body>
+
+<div th:fragment="header">
+
+</div>
+<div th:fragment="menu">
+
+</div>
+
+<div th:fragment="message">
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="span12">-->
+                <!--<div th:if="${success != null}">-->
+                    <!--<div class="alert alert-success">-->
+                        <!--<strong th:text="${success}"></strong>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div th:if="${error != null}">-->
+                    <!--<div class="alert alert-danger">-->
+                        <!--<strong th:text="${error}"></strong>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

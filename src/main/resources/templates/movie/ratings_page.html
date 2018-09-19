@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Search for a movie</title>
-</head>
-<body>
+<!DOCTYPE HTML>
+<HTML xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorate="~{base}">
+<div layout:fragment="page_content" id="search_content">
 <form th:action="@{/movie/search}" th:method="POST" modelAttribute="title">
     <label>Search By Title</label>
     <input type="text" name="title" placeholder="Search"/>
@@ -45,5 +46,5 @@
     </tbody>
 </table>
 </form>
-</body>
-</html>
+</div>
+</HTML>

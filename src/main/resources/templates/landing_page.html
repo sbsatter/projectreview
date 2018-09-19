@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Landing Page</title>
-</head>
-<body>
+<!DOCTYPE HTML>
+<HTML xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorate="~{base}">
+<div layout:fragment="page_content" id="search_content">
 This is just a simple landing page.<br>
 <div th:text="${success}"></div>
 
@@ -16,5 +16,5 @@ This is just a simple landing page.<br>
 <div th:if="${not #authorization.expression('isAuthenticated()')}">
     Existing user? <a th:href="@{/login}">Log in now</a>
 </div>
-</body>
-</html>
+</div>
+</HTML>

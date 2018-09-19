@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="footer">
+
+    <div class="container">
+        <footer>
+            © 2018 sbsatter
+            <span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="name"></span> |
+                Roles: <span sec:authentication="principal.authorities"></span> |
+                <a href="javascript: document.footerLogout.submit()" role="menuitem">Sign Out</a>
+                <form name="footerLogout" th:action="@{/logout}" method="POST" th:hidden="true">
+                     <input th:hidden="true" type="submit" value="Logout"/>
+                </form>
+            </span>
+            <!--<script th:src="@{../../js/jquery-1.7.2.min.js}"></script>-->
+            <!--<script th:src="@{../../js/jquery.validate.js}"></script>-->
+            <!--<script th:src="@{../../js/ajax-default-configurer.js}"></script>-->
+            <!--<script th:src="@{../../js/bootstrap.js}"></script>-->
+            <!--<script th:src="@{../../js/signin.js}"></script>-->
+            <!--<script th:src="@{../../js/excanvas.min.js}"></script>-->
+            <!--<script th:src="@{../../js/chart.min.js}"></script>-->
+            <!--<script th:src="@{../../js/base.js}"></script>-->
+            <!--<script th:src="@{../../js/full-calendar/fullcalendar.min.js}"></script>-->
+            <!--<script th:src="@{../../js/jquery-ui.js}"></script>-->
+            <!--<script th:src="@{../../js/bootstrap-toggle.min.js}"></script>-->
+        </footer>
+    </div>
+</div>
+
+<div th:fragment="datatable">
+    <script th:src="@{../../js/datatables.min.js}"></script>
+</div>
+</body>
+
+</html>
