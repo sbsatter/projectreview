@@ -28,5 +28,11 @@
     </tr>
     </tbody>
 </table>
+<footer>
+    <a href="javascript: document.footerLogout.submit()" role="menuitem">Sign Out</a>
+    <form name="footerLogout" th:action="@{/logout}" method="POST" th:hidden="true">
+         <input th:hidden="true" type="submit" value="Logout"/>
+    </form>
+</footer>
 </body>
 </html>
